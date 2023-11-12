@@ -1,0 +1,61 @@
+{
+  "name": "local-date",
+  "version": "1.0.0",
+  "description": "Lightweight local date manipulation library",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "type": "module",
+  "types": "lib/types/index.d.ts",
+  "homepage": "https://github.com/dextertanyj/local-date",
+  "author": {
+    "name": "Dexter Tan",
+    "email": "dev@dextertanyj.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dextertanyj/local-date"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js",
+      "types": "./lib/types/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "*.md",
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "date",
+    "timezone",
+    "localization"
+  ],
+  "scripts": {
+    "prepack": "npm run build",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:types",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:types": "tsc -p tsconfig.types.json",
+    "lint": "eslint --ext ts,js .",
+    "lint:fix": "eslint --fix --ext ts,js .",
+    "clean": "git clean -xdf node_modules lib",
+    "test": "vitest",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "auto-changelog": "^2.4.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^3.0.2",
+    "typescript": "^5.1.6",
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6"
+  }
+}
