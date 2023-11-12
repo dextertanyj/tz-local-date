@@ -10,12 +10,15 @@ import {
 export class LocalDate {
   private offset: number;
 
-  constructor(timezone: string) {
+  constructor(
+    private timezone: string,
+    date: Date | number | undefined = undefined,
+  ) {
     const timezoneOffsetString = Intl.DateTimeFormat("en-US", {
       timeZone: timezone,
       timeZoneName: "longOffset",
     })
-      .formatToParts(undefined)
+      .formatToParts(date)
       .find((part) => part.type === "timeZoneName");
     const timezoneOffset = {
       hour: 0,
@@ -53,6 +56,10 @@ export class LocalDate {
       (normalizedLocal.getUTCMonth() + 1) * 100 +
       normalizedLocal.getUTCDate()
     );
+  }
+
+  withDate(date: Date | number) {
+    return new LocalDate(this.timezone, date);
   }
 
   toComponents(date: Date | number): { year: number; month: number; day: number } {
