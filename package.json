@@ -44,6 +44,7 @@
     "clean": "git clean -xdf node_modules lib",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
+    "benchmark": "tsx tests/benchmark.ts",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "devDependencies": {
@@ -58,6 +59,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.2",
     "tinybench": "^2.5.1",
+    "tsx": "^4.1.1",
     "typescript": "^5.1.6",
     "vite": "^4.5.0",
     "vitest": "^0.34.6"
