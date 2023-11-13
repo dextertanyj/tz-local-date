@@ -96,10 +96,10 @@ export class LocalDate {
     return new Date(nextDay.valueOf() - 1);
   }
 
-  getDay = (date: Date | number): Day => {
+  getDay = (date: Date | number): Day | null => {
     const normalizedLocal = this.toNormalizedLocalDate(date);
 
-    return DAYS[normalizedLocal.getUTCDay()];
+    return DAYS[normalizedLocal.getUTCDay()] ?? null;
   };
 
   getMillisecondsFromStartOfDay = (date: Date | number) => {
