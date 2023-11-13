@@ -179,6 +179,12 @@ describe("LocalDate", () => {
         const result = ld.getDay(date);
         expect(result).toEqual(Day.SUNDAY);
       });
+
+      test("should return null given invalid date", () => {
+        const date = new Date("Invalid Date");
+        const result = ld.getDay(date);
+        expect(result).toEqual(null);
+      });
     });
 
     describe("toComponents", () => {
