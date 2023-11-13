@@ -9,5 +9,9 @@ export default defineConfig({
     alias: {
       "~/": fileURLToPath(new URL("./src/", import.meta.url)),
     },
+    coverage: {
+      reporter: ["text", "lcov", "html"],
+      exclude: ["**/*.spec.ts", "**/*.fixtures.ts"],
+    },
   },
 });
