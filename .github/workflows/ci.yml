@@ -66,7 +66,7 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm ci
-      - name: Run tests
+      - name: Run benchmark
         run: npm run benchmark
 
   lint:
