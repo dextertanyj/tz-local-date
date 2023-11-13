@@ -401,6 +401,142 @@ describe("LocalDate", () => {
     });
   });
 
+  describe("Different timezones", () => {
+    const ld = new LocalDate("UTC");
+
+    describe("startOfDay", () => {
+      test("should return start of local day given date object from another timezone", () => {
+        const date = new Date("2023-01-01T08:00:00-01:00");
+        const result = ld.startOfDay(date);
+        expect(result).toEqual(new Date("2023-01-01T00:00:00.000+00:00"));
+      });
+    });
+
+    describe("startOfNextDay", () => {
+      test("should return start of next local day given date object from another timezone", () => {
+        const date = new Date("2023-01-01T08:00:00-01:00");
+        const result = ld.startOfNextDay(date);
+        expect(result).toEqual(new Date("2023-01-02T00:00:00.000+00:00"));
+      });
+    });
+
+    describe("startOfPreviousDay", () => {
+      test("should return start of previous local day given date object from another timezone", () => {
+        const date = new Date("2023-01-01T08:00:00-01:00");
+        const result = ld.startOfPreviousDay(date);
+        expect(result).toEqual(new Date("2022-12-31T00:00:00.000+00:00"));
+      });
+    });
+
+    describe("endOfDay", () => {
+      test("should return end of local day given date object from another timezone", () => {
+        const date = new Date("2023-01-01T08:00:00-01:00");
+        const result = ld.endOfDay(date);
+        expect(result).toEqual(new Date("2023-01-01T23:59:59.999+00:00"));
+      });
+    });
+
+    describe("isSame", () => {
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isSame(date1, date2)).toEqual(true);
+      });
+
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T07:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isSame(date1, date2)).toEqual(false);
+      });
+
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T15:00:00-08:00");
+        expect(ld.isSame(date1, date2)).toEqual(false);
+      });
+    });
+
+    describe("isSameOrBefore", () => {
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isSameOrBefore(date1, date2)).toEqual(true);
+      });
+
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T07:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isSameOrBefore(date1, date2)).toEqual(true);
+      });
+
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T15:00:00-08:00");
+        expect(ld.isSameOrBefore(date1, date2)).toEqual(false);
+      });
+    });
+
+    describe("isSameOrAfter", () => {
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isSameOrAfter(date1, date2)).toEqual(true);
+      });
+
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T07:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isSameOrAfter(date1, date2)).toEqual(false);
+      });
+
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T15:00:00-08:00");
+        expect(ld.isSameOrAfter(date1, date2)).toEqual(true);
+      });
+    });
+
+    describe("isBefore", () => {
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isBefore(date1, date2)).toEqual(false);
+      });
+
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T07:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isBefore(date1, date2)).toEqual(true);
+      });
+
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T15:00:00-08:00");
+        expect(ld.isBefore(date1, date2)).toEqual(false);
+      });
+    });
+
+    describe("isAfter", () => {
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isAfter(date1, date2)).toEqual(false);
+      });
+
+      test("should return false given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T07:00:00+08:00");
+        const date2 = new Date("2022-12-31T16:00:00-08:00");
+        expect(ld.isAfter(date1, date2)).toEqual(false);
+      });
+
+      test("should return true given date objects from two different timezones", () => {
+        const date1 = new Date("2023-01-01T08:00:00+08:00");
+        const date2 = new Date("2022-12-31T15:00:00-08:00");
+        expect(ld.isAfter(date1, date2)).toEqual(true);
+      });
+    });
+  });
+
   describe("Daylight Saving Time", () => {
     const ld = new LocalDate("America/Los_Angeles");
 
