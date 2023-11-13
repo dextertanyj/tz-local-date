@@ -85,4 +85,5 @@ bench
 
 await bench.run();
 
+// eslint-disable-next-line no-console
 console.table(bench.table());
