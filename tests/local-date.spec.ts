@@ -406,12 +406,12 @@ describe("LocalDate", () => {
 
     test("should account for DST transitions", () => {
       const datePST = new Date("2023-02-01T00:00:00.000-08:00");
-      const ldPST = ld.withDate(datePST);
+      const ldPST = ld.at(datePST);
       const resultPST = ldPST.startOfDay(datePST);
       expect(resultPST).toEqual(new Date("2023-02-01T00:00:00.000-08:00"));
       expect(resultPST).not.toEqual(new Date("2023-02-01T00:00:00.000-07:00"));
       const datePDT = new Date("2023-04-01T00:00:00.000-08:00");
-      const ldPDT = ld.withDate(datePDT);
+      const ldPDT = ld.at(datePDT);
       const resultPDT = ldPDT.startOfDay(datePDT);
       expect(resultPDT).toEqual(new Date("2023-04-01T00:00:00.000-07:00"));
       expect(resultPDT).not.toEqual(new Date("2023-04-01T00:00:00.000-08:00"));

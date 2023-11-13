@@ -58,7 +58,7 @@ export class LocalDate {
     );
   }
 
-  withDate(date: Date | number) {
+  at(date: Date | number) {
     return new LocalDate(this.timezone, date);
   }
 
