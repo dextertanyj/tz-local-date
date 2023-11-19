@@ -5,7 +5,7 @@ import {
   HOURS_TO_MILLISECONDS,
   MINUTES_TO_MILLISECONDS,
   SECONDS_TO_MILLISECONDS,
-} from "./constants";
+} from "./constants.js";
 
 export class LocalDate {
   private offset: number;
