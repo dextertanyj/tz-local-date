@@ -22,6 +22,8 @@ npm install tz-local-date
 **2. Initialize an instance with the desired timezone.**
 
 ```ts
+import { LocalDate } from "tz-local-date";
+
 const ld = new LocalDate("UTC");
 ```
 
