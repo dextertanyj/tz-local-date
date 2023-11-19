@@ -15,7 +15,7 @@ dayjs.extend(timezone);
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
-const timezones = ["Asia/Singapore", "UTC", "Pacific/Honolulu"];
+const timezones = ["Asia/Kuching", "UTC", "Pacific/Honolulu"];
 
 describe("consistency", () => {
   for (const timezone of timezones) {

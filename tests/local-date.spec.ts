@@ -4,7 +4,7 @@ import { LocalDate } from "../src/index";
 
 describe("LocalDate", () => {
   describe("Same timeszone", () => {
-    const ld = new LocalDate("Asia/Singapore");
+    const ld = new LocalDate("Asia/Singapore", new Date("1981-12-31T16:00:00+00:00"));
 
     describe("startOfDay", () => {
       test("should return start of local day given date object", () => {
