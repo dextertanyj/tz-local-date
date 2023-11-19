@@ -1,7 +1,7 @@
 {
   "name": "local-date",
   "version": "1.0.0",
-  "description": "Lightweight local date manipulation library",
+  "description": "Fast timezone-aware date comparsion and manipulation",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "type": "module",
@@ -31,6 +31,10 @@
   "keywords": [
     "date",
     "timezone",
+    "format",
+    "comparison",
+    "calculation",
+    "manipulation",
     "localization"
   ],
   "scripts": {
