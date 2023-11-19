@@ -18,7 +18,7 @@ export class LocalDate {
       timeZone: timezone,
       timeZoneName: "longOffset",
     })
-      .formatToParts(date)
+      .formatToParts(date ?? 0)
       .find((part) => part.type === "timeZoneName");
     const timezoneOffset = {
       hour: 0,
