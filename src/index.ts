@@ -62,16 +62,6 @@ export class LocalDate {
     return new LocalDate(this.timezone, date);
   }
 
-  toComponents(date: Date | number): { year: number; month: number; day: number } {
-    const normalizedLocal = this.toNormalizedLocalDate(date);
-
-    return {
-      year: normalizedLocal.getUTCFullYear(),
-      month: normalizedLocal.getUTCMonth() + 1,
-      day: normalizedLocal.getUTCDate(),
-    };
-  }
-
   startOfDay(date: Date | number): Date {
     const normalizedLocal = this.toNormalizedLocalDate(date);
 
@@ -94,6 +84,16 @@ export class LocalDate {
   endOfDay(date: Date | number): Date {
     const nextDay = this.startOfNextDay(date);
     return new Date(nextDay.valueOf() - 1);
+  }
+
+  toComponents(date: Date | number): { year: number; month: number; day: number } {
+    const normalizedLocal = this.toNormalizedLocalDate(date);
+
+    return {
+      year: normalizedLocal.getUTCFullYear(),
+      month: normalizedLocal.getUTCMonth() + 1,
+      day: normalizedLocal.getUTCDate(),
+    };
   }
 
   getDay = (date: Date | number): Day | null => {

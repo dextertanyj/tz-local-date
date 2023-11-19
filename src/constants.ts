@@ -3,22 +3,21 @@ export const MINUTES_TO_MILLISECONDS = 60 * SECONDS_TO_MILLISECONDS;
 export const HOURS_TO_MILLISECONDS = 60 * MINUTES_TO_MILLISECONDS;
 export const DAY_TO_MILLISECONDS = 24 * HOURS_TO_MILLISECONDS;
 
-export enum Day {
-  SUNDAY = "SUNDAY",
-  MONDAY = "MONDAY",
-  TUESDAY = "TUESDAY",
-  WEDNESDAY = "WEDNESDAY",
-  THURSDAY = "THURSDAY",
-  FRIDAY = "FRIDAY",
-  SATURDAY = "SATURDAY",
-}
+export type Day =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
 
 export const DAYS = [
-  Day.SUNDAY,
-  Day.MONDAY,
-  Day.TUESDAY,
-  Day.WEDNESDAY,
-  Day.THURSDAY,
-  Day.FRIDAY,
-  Day.SATURDAY,
-] as const;
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const satisfies readonly Day[];

@@ -2,8 +2,6 @@ import { describe, expect, test } from "vitest";
 
 import { LocalDate } from "../src/index";
 
-import { Day } from "~/constants";
-
 describe("LocalDate", () => {
   describe("Same timeszone", () => {
     const ld = new LocalDate("Asia/Singapore");
@@ -141,43 +139,43 @@ describe("LocalDate", () => {
     describe("getLocalDay", () => {
       test("should return local day given date object", () => {
         const sun = new Date("2023-01-01T08:00:00+08:00");
-        expect(ld.getDay(sun)).toEqual(Day.SUNDAY);
+        expect(ld.getDay(sun)).toEqual("Sunday");
 
         const mon = new Date("2023-01-02T08:00:00+08:00");
-        expect(ld.getDay(mon)).toEqual(Day.MONDAY);
+        expect(ld.getDay(mon)).toEqual("Monday");
 
         const tue = new Date("2023-01-03T08:00:00+08:00");
-        expect(ld.getDay(tue)).toEqual(Day.TUESDAY);
+        expect(ld.getDay(tue)).toEqual("Tuesday");
 
         const wed = new Date("2023-01-04T08:00:00+08:00");
-        expect(ld.getDay(wed)).toEqual(Day.WEDNESDAY);
+        expect(ld.getDay(wed)).toEqual("Wednesday");
 
         const thu = new Date("2023-01-05T08:00:00+08:00");
-        expect(ld.getDay(thu)).toEqual(Day.THURSDAY);
+        expect(ld.getDay(thu)).toEqual("Thursday");
 
         const fri = new Date("2023-01-06T08:00:00+08:00");
-        expect(ld.getDay(fri)).toEqual(Day.FRIDAY);
+        expect(ld.getDay(fri)).toEqual("Friday");
 
         const sat = new Date("2023-01-07T08:00:00+08:00");
-        expect(ld.getDay(sat)).toEqual(Day.SATURDAY);
+        expect(ld.getDay(sat)).toEqual("Saturday");
       });
 
       test("should return local day given EpochTimeStamp", () => {
         const date = new Date("2023-01-01T08:00:00+08:00").valueOf();
         const result = ld.getDay(date);
-        expect(result).toEqual(Day.SUNDAY);
+        expect(result).toEqual("Sunday");
       });
 
       test("should return local day given start of day", () => {
         const date = new Date("2023-01-01T00:00:00.000+08:00");
         const result = ld.getDay(date);
-        expect(result).toEqual(Day.SUNDAY);
+        expect(result).toEqual("Sunday");
       });
 
       test("should return local day given end of day", () => {
         const date = new Date("2023-01-01T23:59:59.999+08:00");
         const result = ld.getDay(date);
-        expect(result).toEqual(Day.SUNDAY);
+        expect(result).toEqual("Sunday");
       });
 
       test("should return null given invalid date", () => {
