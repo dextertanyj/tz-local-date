@@ -12,13 +12,13 @@ export class LocalDate {
 
   constructor(
     private timezone: string,
-    date: Date | number | undefined = undefined,
+    reference: Date | number | undefined = undefined,
   ) {
     const timezoneOffsetString = Intl.DateTimeFormat("en-US", {
       timeZone: timezone,
       timeZoneName: "longOffset",
     })
-      .formatToParts(date ?? 0)
+      .formatToParts(reference ?? 0)
       .find((part) => part.type === "timeZoneName");
     const timezoneOffset = {
       hour: 0,
@@ -58,8 +58,8 @@ export class LocalDate {
     );
   }
 
-  at(date: Date | number) {
-    return new LocalDate(this.timezone, date);
+  at(reference: Date | number) {
+    return new LocalDate(this.timezone, reference);
   }
 
   startOfDay(date: Date | number): Date {
