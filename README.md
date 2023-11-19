@@ -138,8 +138,8 @@ Returns the given date as a string formatted according to the given string of to
 _Defaults to `YYYY-MM-DD`._
 
 > **Supported Tokens** \
-> `YYYY`: Four digit year. \
-> `YY`: Two-digit year. \
+> `YYYY`: Year, padded to four digits. \
+> `YY`: Year, truncated to two digits. \
 > `M`: Month, starting from 1. \
 > `MM`: Month, starting from 1, padded to two digits. \
 > `D`: Day of month, starting from 1. \
