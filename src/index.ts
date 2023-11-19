@@ -86,7 +86,7 @@ export class LocalDate {
     return new Date(nextDay.valueOf() - 1);
   }
 
-  toComponents(date: Date | number): { year: number; month: number; day: number } {
+  getComponents(date: Date | number): { year: number; month: number; day: number } {
     const normalizedLocal = this.toNormalizedLocalDate(date);
 
     return {

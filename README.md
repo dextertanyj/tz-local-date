@@ -131,8 +131,8 @@ Ignores the time components of `lhs` and `rhs`.
 
 ### Date Parsing
 
-**`LocalDate::toComponents`** \
-`toComponents(date: Date | number): { year: number; month: number; day: number }`
+**`LocalDate::getComponents`** \
+`getComponents(date: Date | number): { year: number; month: number; day: number }`
 
 Returns the year, month, and day of month of the given date, localized to the configured timezone.
 

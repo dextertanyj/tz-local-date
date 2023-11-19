@@ -185,28 +185,28 @@ describe("LocalDate", () => {
       });
     });
 
-    describe("toComponents", () => {
+    describe("getComponents", () => {
       test("should return localised date components given date object", () => {
         const date = new Date("2023-01-01T08:00:00.000+08:00");
-        const result = ld.toComponents(date);
+        const result = ld.getComponents(date);
         expect(result).toEqual({ year: 2023, month: 1, day: 1 });
       });
 
       test("should return localised date components given EpochTimeStamp", () => {
         const date = new Date("2023-01-01T08:00:00.000+08:00").valueOf();
-        const result = ld.toComponents(date);
+        const result = ld.getComponents(date);
         expect(result).toEqual({ year: 2023, month: 1, day: 1 });
       });
 
       test("should return localised date components given start of day", () => {
         const date = new Date("2023-01-01T00:00:00.000+08:00");
-        const result = ld.toComponents(date);
+        const result = ld.getComponents(date);
         expect(result).toEqual({ year: 2023, month: 1, day: 1 });
       });
 
       test("should return localised date components given end of day", () => {
         const date = new Date("2023-01-01T23:59:59.999+08:00");
-        const result = ld.toComponents(date);
+        const result = ld.getComponents(date);
         expect(result).toEqual({ year: 2023, month: 1, day: 1 });
       });
     });
