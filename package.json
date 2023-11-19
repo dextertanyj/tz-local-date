@@ -1,19 +1,19 @@
 {
-  "name": "local-date",
+  "name": "tz-local-date",
   "version": "1.0.0",
   "description": "Fast timezone-aware date comparsion and manipulation",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "type": "module",
   "types": "lib/types/index.d.ts",
-  "homepage": "https://github.com/dextertanyj/local-date",
+  "homepage": "https://github.com/dextertanyj/tz-local-date",
   "author": {
     "name": "Dexter Tan",
     "email": "dev@dextertanyj.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dextertanyj/local-date"
+    "url": "https://github.com/dextertanyj/tz-local-date"
   },
   "exports": {
     ".": {

@@ -1,7 +1,7 @@
-# Local Date
+# Timezone Local Date
 
-[![CI](https://github.com/dextertanyj/local-date/actions/workflows/ci.yml/badge.svg)](https://github.com/dextertanyj/local-date/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/dextertanyj/local-date/badge.svg?branch=master)](https://coveralls.io/github/dextertanyj/local-date?branch=master)
+[![CI](https://github.com/dextertanyj/tz-local-date/actions/workflows/ci.yml/badge.svg)](https://github.com/dextertanyj/tz-local-date/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/dextertanyj/tz-local-date/badge.svg?branch=master)](https://coveralls.io/github/dextertanyj/tz-local-date?branch=master)
 
 Fast timezone-aware date comparsion and manipulation.
 
@@ -13,10 +13,10 @@ Fast timezone-aware date comparsion and manipulation.
 
 ## Quickstart
 
-**1. Install `local-date`.**
+**1. Install `tz-local-date`.**
 
 ```shell
-npm install local-date
+npm install tz-local-date
 ```
 
 **2. Initialize an instance with the desired timezone.**
