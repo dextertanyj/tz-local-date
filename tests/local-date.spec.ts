@@ -211,6 +211,44 @@ describe("LocalDate", () => {
       });
     });
 
+    describe("format", () => {
+      test("should return default format given no format string", () => {
+        const date = new Date("2023-01-02T08:00:00.000+08:00");
+        const result = ld.format(date);
+        expect(result).toEqual("2023-01-02");
+      });
+
+      test("should return short components", () => {
+        const date = new Date("2023-01-02T08:00:00.000+08:00");
+        const result = ld.format(date, "YY-M-D");
+        expect(result).toEqual("23-1-2");
+      });
+
+      test("should support alternative delimiters", () => {
+        const date = new Date("2023-01-02T08:00:00.000+08:00");
+        const result = ld.format(date, "YYYY/MM/DD");
+        expect(result).toEqual("2023/01/02");
+      });
+
+      test("should support out of order substitutions", () => {
+        const date = new Date("2023-01-02T08:00:00.000+08:00");
+        const result = ld.format(date, "MM-DD-YYYY");
+        expect(result).toEqual("01-02-2023");
+      });
+
+      test("should support partial format", () => {
+        const date = new Date("2023-01-02T08:00:00.000+08:00");
+        const result = ld.format(date, "DD-MM");
+        expect(result).toEqual("02-01");
+      });
+
+      test("should support repeated elements", () => {
+        const date = new Date("2023-01-02T08:00:00.000+08:00");
+        const result = ld.format(date, "YYYY-MM-MM");
+        expect(result).toEqual("2023-01-01");
+      });
+    });
+
     describe("isSame", () => {
       test("should return true given same date object", () => {
         const date = new Date("2023-01-01T08:00:00+08:00");

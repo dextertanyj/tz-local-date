@@ -2,6 +2,8 @@ import {
   Day,
   DAY_TO_MILLISECONDS,
   DAYS,
+  DEFAULT_FORMAT,
+  FORMAT_REGEX,
   HOURS_TO_MILLISECONDS,
   MINUTES_TO_MILLISECONDS,
   SECONDS_TO_MILLISECONDS,
@@ -76,10 +78,10 @@ export class LocalDate {
     return new Date(current + DAY_TO_MILLISECONDS);
   }
 
-  startOfPreviousDay = (date: Date | number): Date => {
+  startOfPreviousDay(date: Date | number): Date {
     const current = this.startOfDay(date).valueOf();
     return new Date(current - DAY_TO_MILLISECONDS);
-  };
+  }
 
   endOfDay(date: Date | number): Date {
     const nextDay = this.startOfNextDay(date);
@@ -96,13 +98,13 @@ export class LocalDate {
     };
   }
 
-  getDay = (date: Date | number): Day | null => {
+  getDay(date: Date | number): Day | null {
     const normalizedLocal = this.toNormalizedLocalDate(date);
 
     return DAYS[normalizedLocal.getUTCDay()] ?? null;
-  };
+  }
 
-  getMillisecondsFromStartOfDay = (date: Date | number) => {
+  getMillisecondsFromStartOfDay(date: Date | number) {
     const normalizedLocal = this.toNormalizedLocalDate(date);
 
     return (
@@ -111,26 +113,52 @@ export class LocalDate {
       normalizedLocal.getUTCSeconds() * SECONDS_TO_MILLISECONDS +
       normalizedLocal.getUTCMilliseconds()
     );
-  };
+  }
 
-  isSame = (lhs: Date | number, rhs: Date | number) => {
+  format(date: Date | number, format: string = DEFAULT_FORMAT) {
+    const { year, month, day } = this.getComponents(date);
+
+    const matches = (match: string) => {
+      switch (match) {
+        case "YY":
+          return String(year).slice(-2);
+        case "YYYY":
+          return String(year).padStart(4, "0");
+        case "M":
+          return String(month);
+        case "MM":
+          return String(month).padStart(2, "0");
+        case "D":
+          return String(day);
+        case "DD":
+          return String(day).padStart(2, "0");
+        default:
+          break;
+      }
+      return null;
+    };
+
+    return format.replace(FORMAT_REGEX, (match) => matches(match) ?? match);
+  }
+
+  isSame(lhs: Date | number, rhs: Date | number) {
     // Both values should be integers
     return this.getLocalDate(lhs) === this.getLocalDate(rhs);
-  };
+  }
 
-  isSameOrBefore = (lhs: Date | number, rhs: Date | number) => {
+  isSameOrBefore(lhs: Date | number, rhs: Date | number) {
     return this.getLocalDate(lhs) <= this.getLocalDate(rhs);
-  };
+  }
 
-  isBefore = (lhs: Date | number, rhs: Date | number) => {
+  isBefore(lhs: Date | number, rhs: Date | number) {
     return this.getLocalDate(lhs) < this.getLocalDate(rhs);
-  };
+  }
 
-  isAfter = (lhs: Date | number, rhs: Date | number) => {
+  isAfter(lhs: Date | number, rhs: Date | number) {
     return this.getLocalDate(lhs) > this.getLocalDate(rhs);
-  };
+  }
 
-  isSameOrAfter = (lhs: Date | number, rhs: Date | number) => {
+  isSameOrAfter(lhs: Date | number, rhs: Date | number) {
     return this.getLocalDate(lhs) >= this.getLocalDate(rhs);
-  };
+  }
 }

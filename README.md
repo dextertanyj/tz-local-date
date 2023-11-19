@@ -131,6 +131,20 @@ Ignores the time components of `lhs` and `rhs`.
 
 ### Date Parsing
 
+**`LocalDate::format`** \
+`format(date: Date | number, format?: string): string`
+
+Returns the given date as a string formatted according to the given string of tokens. \
+_Defaults to `YYYY-MM-DD`._
+
+> **Supported Tokens** \
+> `YYYY`: Four digit year. \
+> `YY`: Two-digit year. \
+> `M`: Month, starting from 1. \
+> `MM`: Month, starting from 1, padded to two digits. \
+> `D`: Day of month, starting from 1. \
+> `DD`: Day of month, starting from 1, padded to two digits.
+
 **`LocalDate::getComponents`** \
 `getComponents(date: Date | number): { year: number; month: number; day: number }`
 
