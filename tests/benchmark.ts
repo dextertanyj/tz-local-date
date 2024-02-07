@@ -83,7 +83,8 @@ bench
     dayjs(date1).tz().isAfter(date2, "day");
   });
 
-await bench.run();
-
-// eslint-disable-next-line no-console
-console.table(bench.table());
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+bench.run().then(() => {
+  // eslint-disable-next-line no-console
+  console.table(bench.table());
+});
