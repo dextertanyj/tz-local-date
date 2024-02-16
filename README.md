@@ -7,9 +7,9 @@ Fast timezone-aware date comparsion and manipulation.
 
 ## Features
 
-- ⚡️ Fast date calculations using native `Date` objects
-- 🌏 Timezone-aware with support for daylight saving time
-- 🪶 Lightweight with no dependencies
+- ⚡️ Fast date calculations using native `Date` objects.
+- 🌏 Timezone-aware with support for daylight saving time.
+- 🪶 Lightweight with no dependencies.
 
 ## Quickstart
 
