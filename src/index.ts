@@ -9,6 +9,30 @@ import {
   SECONDS_TO_MILLISECONDS,
 } from "./constants.js";
 
+export { Day } from "./constants.js";
+
+function extractReferenceParts(parts: Intl.DateTimeFormatPart[]) {
+  const year = parts.find((part) => part.type === "year")?.value;
+  const month = parts.find((part) => part.type === "month")?.value;
+  const day = parts.find((part) => part.type === "day")?.value;
+  const hour = parts.find((part) => part.type === "hour")?.value;
+  const minute = parts.find((part) => part.type === "minute")?.value;
+  const second = parts.find((part) => part.type === "second")?.value;
+
+  if (!year || !month || !day || !hour || !minute || !second) {
+    throw new RangeError("Invalid date format");
+  }
+
+  return {
+    year: parseInt(year),
+    month: parseInt(month) - 1,
+    day: parseInt(day),
+    hour: parseInt(hour) % 24,
+    minute: parseInt(minute),
+    second: parseInt(second),
+  };
+}
+
 export class LocalDate {
   private offset: number;
 
@@ -16,25 +40,30 @@ export class LocalDate {
     private timezone: string,
     reference: Date | number | undefined = undefined,
   ) {
-    const timezoneOffsetString = Intl.DateTimeFormat("en-US", {
+    const referenceDate = reference ? new Date(reference) : new Date(0);
+    const utcOffset = new Date(referenceDate);
+    // We need to reset the milliseconds component since Intl.DateTimeFormat does not support milliseconds
+    utcOffset.setMilliseconds(0);
+
+    const referenceParts = Intl.DateTimeFormat("en-US", {
       timeZone: timezone,
-      timeZoneName: "longOffset",
-    })
-      .formatToParts(reference ?? 0)
-      .find((part) => part.type === "timeZoneName");
-    const timezoneOffset = {
-      hour: 0,
-      minute: 0,
-    };
+      hour12: false,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "numeric",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).formatToParts(reference ?? 0);
 
-    if (timezoneOffsetString) {
-      const offset = timezoneOffsetString.value.slice(3); // Remove GMT
-      const [hour, minute] = offset.split(":");
-      if (hour) timezoneOffset.hour = parseInt(hour, 10);
-      if (minute) timezoneOffset.minute = parseInt(minute, 10);
-    }
+    const { year, month, day, hour, minute, second } = extractReferenceParts(referenceParts);
 
-    this.offset = timezoneOffset.hour * 60 * 60 * 1000 + timezoneOffset.minute * 60 * 1000;
+    const timezoneOffset = new Date(0);
+    timezoneOffset.setUTCFullYear(year, month, day);
+    timezoneOffset.setUTCHours(hour, minute, second, 0);
+
+    this.offset = timezoneOffset.valueOf() - utcOffset.valueOf();
   }
 
   private toNormalizedTimestamp(date: Date | number): number {
