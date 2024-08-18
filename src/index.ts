@@ -9,6 +9,8 @@ import {
   SECONDS_TO_MILLISECONDS,
 } from "./constants.js";
 
+export { Day } from "./constants.js";
+
 export class LocalDate {
   private offset: number;
 
@@ -16,25 +18,11 @@ export class LocalDate {
     private timezone: string,
     reference: Date | number | undefined = undefined,
   ) {
-    const timezoneOffsetString = Intl.DateTimeFormat("en-US", {
-      timeZone: timezone,
-      timeZoneName: "longOffset",
-    })
-      .formatToParts(reference ?? 0)
-      .find((part) => part.type === "timeZoneName");
-    const timezoneOffset = {
-      hour: 0,
-      minute: 0,
-    };
+    const referenceDate = reference ? new Date(reference) : new Date(0);
+    const utcOffset = new Date(referenceDate.toLocaleString("en-US", { timeZone: "utc" }));
+    const timezoneOffset = new Date(referenceDate.toLocaleString("en-US", { timeZone: timezone }));
 
-    if (timezoneOffsetString) {
-      const offset = timezoneOffsetString.value.slice(3); // Remove GMT
-      const [hour, minute] = offset.split(":");
-      if (hour) timezoneOffset.hour = parseInt(hour, 10);
-      if (minute) timezoneOffset.minute = parseInt(minute, 10);
-    }
-
-    this.offset = timezoneOffset.hour * 60 * 60 * 1000 + timezoneOffset.minute * 60 * 1000;
+    this.offset = timezoneOffset.valueOf() - utcOffset.valueOf();
   }
 
   private toNormalizedTimestamp(date: Date | number): number {
