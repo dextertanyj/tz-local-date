@@ -1,6 +1,6 @@
 {
   "name": "tz-local-date",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fast timezone-aware date comparsion and manipulation",
   "license": "MIT",
   "main": "lib/cjs/index.cjs",
